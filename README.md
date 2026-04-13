@@ -30,6 +30,16 @@ For detailed instructions on how to install drivers, configure your development 
 - [**WinUSB Driver Installation**](WINUSB_DRIVER_INSTALL.md): Step-by-step guide on how to replace default camera drivers with the required WinUSB driver using Zadig.
 - [**Build Environment**](BUILD_ENVIRONMENT.md): Instructions for setting up the build environment.
 
+## Download
+
+A pre-built Windows application is available for direct use without the need to compile from source.
+
+| File | Platform | Description |
+| :--- | :--- | :--- |
+| [Release.zip](./Release.zip) | Windows (x64) | Ready-to-run USB3 Vision Camera Viewer executable. Extract the ZIP and run the application directly — no installation required. |
+
+---
+
 ## Quick Start (SDK)
 
 The repository includes a pre-compiled SDK and a basic example. 
