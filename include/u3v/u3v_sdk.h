@@ -10,26 +10,11 @@
 #ifndef U3V_SDK_H
 #define U3V_SDK_H
 
-/* Platform-specific DLL export/import definitions */
-#if defined(_WIN32)
-  #if defined(U3V_DLL_EXPORTS)
-    #define U3V_API __declspec(dllexport)
-  #else
-    #define U3V_API __declspec(dllimport)
-  #endif
-#else
-  #if defined(U3V_DLL_EXPORTS)
-    #define U3V_API __attribute__((visibility("default")))
-  #else
-    #define U3V_API
-  #endif
-#endif
-
-/* Exported Core headers */
 #include "u3v_types.h"
+#include "u3v_imx296.h"
+#include "u3v_usb.h"
+#include "u3v_protocol.h"
 #include "u3v_camera.h"
 #include "u3v_stream.h"
-
-/* Note: Internal protocol, xml, and usb headers are NOT exposed in the DLL */
 
 #endif /* U3V_SDK_H */
