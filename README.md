@@ -117,7 +117,14 @@ The USB3 Vision Camera Viewer supports any USB3 Vision (U3V) compliant camera us
 
 | Product | Sensor | Resolution | Features | Link |
 |---------|--------|-----------|----------|------|
-| **U3V-IMX296-GS** | Sony IMX296 | 1.58 MP (1456×1088) | Global Shutter, 60fps, Trigger/Strobe | [View Product](https://www.inno-maker.com/product/u3v-imx296-gs/) |
+| **U3V-CAM-GS** | Sony IMX296 | 1.58 MP (1456×1088) | Global Shutter, 60fps, Monochrome/Color, Trigger/Strobe | [View Product](https://www.inno-maker.com/product/u3v-imx296-gs/) |
+
+### Planned Camera Modules
+
+| Product | Sensor | Status |
+|---------|--------|--------|
+| **U3V-CAM-OV9281** | OmniVision OV9281 | 📋 Coming Soon |
+| **U3V-CAM-IMX585** | Sony IMX585 | 📋 Coming Soon |
 
 ### Adding New Hardware
 

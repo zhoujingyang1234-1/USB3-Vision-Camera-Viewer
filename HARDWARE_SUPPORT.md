@@ -8,15 +8,15 @@ This document lists all camera modules that have been verified and tested with t
 
 ### InnoMaker Products
 
-#### U3V-IMX296-GS Series
+#### U3V-CAM-GS Series
 
 | Model | Sensor | Resolution | Frame Rate | Features | Status | Link |
 |-------|--------|-----------|-----------|----------|--------|------|
-| **U3V-IMX296Mono-GS** | Sony IMX296LLR | 1.58 MP (1456×1088) | 60 fps | Global Shutter, Monochrome, Trigger/Strobe | ✅ Verified | [View](https://www.inno-maker.com/product/u3v-imx296-gs/) |
-| **U3V-IMX296Color-GS** | Sony IMX296LQR | 1.58 MP (1456×1088) | 60 fps | Global Shutter, Color (Bayer), Trigger/Strobe | ✅ Verified | [View](https://www.inno-maker.com/product/u3v-imx296-gs/) |
+| **U3V-CAM-GS** | Sony IMX296 | 1.58 MP (1456×1088) | 60 fps | Global Shutter, Monochrome/Color, Trigger/Strobe | ✅ Verified | [View](https://www.inno-maker.com/product/u3v-imx296-gs/) |
 
 **Specifications:**
-- **Sensor Type:** CMOS Global Shutter
+- **Sensor Type:** CMOS Global Shutter (Sony IMX296)
+- **Variants:** Monochrome (IMX296LLR) and Color (IMX296LQR)
 - **Pixel Size:** 3.4 µm × 3.4 µm
 - **Optical Format:** 1/1.3 inch
 - **Interface:** USB3 Vision (U3V) compliant
@@ -97,11 +97,10 @@ To add your U3V camera to this list, please:
 
 The following cameras are planned for testing and verification:
 
-| Model | Status | ETA |
-|-------|--------|-----|
-| U3V-IMX585-GS | 🔄 In Testing | Q2 2026 |
-| U3V-IMX577-GS | 🔄 In Testing | Q2 2026 |
-| U3V-OV9281-GS | 📋 Planned | Q3 2026 |
+| Model | Sensor | Status | ETA |
+|-------|--------|--------|-----|
+| **U3V-CAM-OV9281** | OmniVision OV9281 | 📋 Planned | TBD |
+| **U3V-CAM-IMX585** | Sony IMX585 | 📋 Planned | TBD |
 
 ---
 
@@ -137,5 +136,6 @@ For camera-specific issues or to report compatibility problems:
 ---
 
 **Last Updated:** May 8, 2026  
-**Total Verified Cameras:** 2 models  
-**Total Platforms Tested:** 4 (Windows x64, Linux x64, Raspberry Pi 5, Jetson Orin Nano)
+**Total Verified Cameras:** 1 product line (U3V-CAM-GS)  
+**Total Platforms Tested:** 4 (Windows x64, Linux x64, Raspberry Pi 5, Jetson Orin Nano)  
+**Planned Cameras:** 2 (U3V-CAM-OV9281, U3V-CAM-IMX585)
