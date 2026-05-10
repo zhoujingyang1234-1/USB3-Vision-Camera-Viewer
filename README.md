@@ -16,7 +16,7 @@
 - **🖥️ Cross-Platform** — Windows 10/11 x64 and Linux (x64/ARM64)
 - **📷 Live Preview** — Real-time camera stream visualization
 - **⚙️ Full Camera Control** — Exposure, gain, ROI, trigger mode, and more
-- **🛠️ Developer-Friendly** — Complete C SDK with examples
+- **🛠️ Developer-Friendly** — Complete C SDK and Python SDK with examples
 - **🔌 Universal Driver Support** — Works with WinUSB and libusb
 - **📊 Professional Tools** — Histogram, frame statistics, image capture
 - **🎯 Hardware Trigger Support** — External trigger and strobe synchronization
@@ -40,7 +40,7 @@
 ### Linux Package (V9-SDK-SO-CUS)
 
 | Component | Details |
-|-----------|---------|
+|-----------|---------||
 | **GUI Viewer** | `u3v_viewer` — Full-featured camera control interface |
 | **CLI Tool** | `basic_capture` — Command-line image capture |
 | **SDK Library** | `libu3v_cam.so*` — Shared library for custom applications |
@@ -48,6 +48,17 @@
 | **Examples** | `basic_capture.c` — Reference implementation |
 | **Architectures** | x64 (Intel/AMD) + ARM64 (Raspberry Pi 5, Jetson, etc.) |
 | **Size** | 1.4 MB (extracted), 520 KB (compressed) |
+
+### Python Package (V9-SDK-PYTHON-CUS)
+
+| Component | Details |
+|-----------|---------||
+| **Python Package** | `u3v_cam` — High-level Camera class with NumPy frame output |
+| **PyQt6 Viewer** | `examples/viewer_pyqt.py` — Live viewer (~290 lines, copy-friendly) |
+| **CLI Scripts** | `run_basic_capture`, `run_live_capture` — Headless capture demos |
+| **Examples** | `basic_capture.py`, `trigger_mode.py`, `roi_exposure.py` |
+| **Platforms** | Windows x64 + Linux x64/ARM64 (single package) |
+| **Size** | 1.2 MB (extracted), 540 KB (compressed) |
 
 ---
 
@@ -72,6 +83,29 @@ Double-click: V9-SDK-DLL-CUS\run_viewer.bat
 ```
 
 The GUI should launch and automatically detect connected U3V cameras.
+
+### Python
+
+#### Windows
+
+```bat
+:: 1. Extract V9-SDK-PYTHON-CUS.zip
+:: 2. Install WinUSB driver (use Zadig from V9-SDK-DLL-CUS\tools\)
+:: 3. Open a command prompt in V9-SDK-PYTHON-CUS\
+install_deps.bat
+run_viewer.bat
+```
+
+#### Linux (Ubuntu 22.04, Debian 12+, Raspberry Pi OS Bookworm)
+
+```bash
+# Same USB prerequisites as Linux C/C++ package (libusb-1.0-0 + udev rule)
+unzip V9-SDK-PYTHON-CUS.zip
+cd V9-SDK-PYTHON-CUS
+chmod +x *.sh
+./install_deps.sh
+./run_viewer.sh
+```
 
 ### Linux
 
@@ -246,6 +280,50 @@ cp -r $ARCH_DIR/lib ./
 
 See `V9-SDK-SO-CUS/ubuntu22.04-x64/examples/basic_capture.c` for the complete example.
 
+### Python Development
+
+```python
+import u3v_cam
+
+# Discover cameras
+print(u3v_cam.list_cameras())
+# -> [{'index': 0, 'manufacturer': '...', 'serial': '...', ...}]
+
+# Open, configure, capture
+with u3v_cam.Camera() as cam:
+    cam.set_roi(1456, 1088)
+    cam.pixel_format = u3v_cam.PFNC_MONO8
+    cam.exposure_us  = 5000
+    cam.gain         = 0
+    cam.frame_rate   = 60
+    cam.start()
+    for _ in range(60):
+        frame = cam.read_frame()   # numpy.ndarray (H, W) uint8
+        # ... process frame
+    cam.stop()
+```
+
+Hardware trigger:
+
+```python
+cam.configure_trigger(on=True, source="software")
+cam.start()
+cam.software_trigger()
+frame = cam.read_frame()
+```
+
+**Optional Dependencies**:
+
+| Feature | Package | Install |
+|---------|---------|--------|
+| Core (required) | `numpy>=1.20` | `pip install numpy` |
+| PyQt6 live viewer | `PyQt6` + `pyqtgraph` | `pip install PyQt6 pyqtgraph` |
+| Live preview | `opencv-python` | `pip install opencv-python` |
+
+Or use `install_deps.bat` / `install_deps.sh` for an interactive prompt.
+
+See `V9-SDK-PYTHON-CUS/README.md` for the full Python API reference.
+
 ---
 
 ## 📚 API Reference
@@ -329,13 +407,20 @@ For the complete API, see the header files in `include/u3v/`.
 - **Libraries:** libusb-1.0-0, libqt6widgets6
 - **Compiler (for development):** GCC 11+ or Clang 14+
 
+### Python
+- **Python:** 3.8 – 3.12, CPython
+- **OS:** Windows 10/11 x64, Ubuntu 22.04+, Debian 12+, Raspberry Pi OS Bookworm
+- **Architecture:** x64 + ARM64 (single package)
+- **Required:** `numpy>=1.20`
+- **Optional:** `PyQt6 + pyqtgraph` (viewer), `opencv-python` (live preview)
+
 ---
 
 ## 📄 Technical Specifications
 
 | Specification | Value |
 |---------------|-------|
-| **SDK Version** | 2.0.0 |
+| **SDK Version** | 2.0.1 |
 | **USB Standard** | USB3 Vision (U3V) v1.x compliant |
 | **Protocol** | USB 3.0 SuperSpeed |
 | **Max Bandwidth** | Up to 400 MB/s (theoretical USB 3.0 limit) |
@@ -382,6 +467,6 @@ For technical support, bug reports, or feature requests, please:
 
 ---
 
-**Last Updated:** May 8, 2026  
-**SDK Version:** 2.0.0  
+**Last Updated:** May 9, 2026  
+**SDK Version:** 2.0.1  
 **Status:** ✅ Production Ready
