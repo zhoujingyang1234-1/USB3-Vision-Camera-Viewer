@@ -3,8 +3,8 @@
 USB3 Vision (U3V) compliant camera SDK with cross-platform binaries,
 GUI viewer, and reference example.
 
-- **SDK version:** 2.1.0
-- **Last updated:** 2026-05-11
+- **SDK version:** 2.1.1
+- **Last updated:** 2026-05-12
 
 ---
 
@@ -36,7 +36,7 @@ the matrix below.
 
 | Parameter | Sony IMX296 | OmniVision OV9281 | Sony IMX585 |
 |---|---|---|---|
-| Status | ✅ Production (SDK 2.1.0) | 🟡 Reserved | 🟡 Reserved |
+| Status | ✅ Production (SDK 2.1.1) | ✅ Production (SDK 2.1.1) | 🟡 Reserved |
 | Native resolution | 1456 × 1088 | TBD | TBD |
 | Pixel size | 3.45 µm | TBD | TBD |
 | Shutter type | Global | TBD | TBD |
@@ -159,7 +159,7 @@ V9-SDK-SO-CUS/
 │   ├── lib/
 │   │   ├── libu3v_cam.so           ← link target
 │   │   ├── libu3v_cam.so.2         ← SONAME
-│   │   └── libu3v_cam.so.2.1.0     ← actual library
+│   │   └── libu3v_cam.so.2.1.1     ← actual library
 │   ├── bin/
 │   │   ├── u3v_viewer              GUI viewer
 │   │   └── basic_capture           CLI capture demo
@@ -414,7 +414,7 @@ _raw.camera_set_exposure(cam._handle, 5000)
 
 | Item | Value |
 |---|---|
-| SDK version | 2.1.0 |
+| SDK version | 2.1.1 |
 | USB protocol | USB3 Vision (U3V) v1.x compliant |
 | Linux glibc requirement | 2.35 or newer (Ubuntu 22.04+) |
 | Windows requirement | Windows 10 build 1809 or newer, all Windows 11 versions |
